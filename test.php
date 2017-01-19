@@ -1,0 +1,1 @@
+<button type="button" class="btn-primary btn-xs"data-toggle="modal" data-target="#myModal" method="POST" action="book.php" name="btn">Book</button>

@@ -1,0 +1,52 @@
+<html><body><pre>
+<span style="color: #666666;">/**</span>
+<span style="color: #666666;">&nbsp;*&nbsp;Bouncing&nbsp;Ball&nbsp;with&nbsp;Vectors&nbsp;</span>
+<span style="color: #666666;">&nbsp;*&nbsp;by&nbsp;Daniel&nbsp;Shiffman.&nbsp;&nbsp;</span>
+<span style="color: #666666;">&nbsp;*&nbsp;</span>
+<span style="color: #666666;">&nbsp;*&nbsp;Demonstration&nbsp;of&nbsp;using&nbsp;vectors&nbsp;to&nbsp;control&nbsp;motion&nbsp;of&nbsp;body</span>
+<span style="color: #666666;">&nbsp;*&nbsp;This&nbsp;example&nbsp;is&nbsp;not&nbsp;object-oriented</span>
+<span style="color: #666666;">&nbsp;*&nbsp;See&nbsp;AccelerationWithVectors&nbsp;for&nbsp;an&nbsp;example&nbsp;of&nbsp;how&nbsp;to&nbsp;simulate&nbsp;motion&nbsp;using&nbsp;vectors&nbsp;in&nbsp;an&nbsp;object</span>
+<span style="color: #666666;">&nbsp;*/</span>
+&nbsp;
+<span style="color: #E2661A;">PVector</span> location;  <span style="color: #666666;">// Location of shape</span>
+<span style="color: #E2661A;">PVector</span> velocity;  <span style="color: #666666;">// Velocity of shape</span>
+<span style="color: #E2661A;">PVector</span> gravity;   <span style="color: #666666;">// Gravity acts at the shape&apos;s acceleration</span>
+
+<span style="color: #33997E;">void</span> <span style="color: #006699;"><b>setup</b></span>() {
+&nbsp;&nbsp;<span style="color: #006699;">size</span>(640,360);
+&nbsp;&nbsp;<span style="color: #006699;">smooth</span>();
+&nbsp;&nbsp;location&nbsp;=&nbsp;<span style="color: #33997E;">new</span> <span style="color: #006699;">PVector</span>(100,100);
+&nbsp;&nbsp;velocity&nbsp;=&nbsp;<span style="color: #33997E;">new</span> <span style="color: #006699;">PVector</span>(1.5,2.1);
+&nbsp;&nbsp;gravity&nbsp;=&nbsp;<span style="color: #33997E;">new</span> <span style="color: #006699;">PVector</span>(0,0.2);
+
+}
+
+<span style="color: #33997E;">void</span> <span style="color: #006699;"><b>draw</b></span>() {
+&nbsp;&nbsp;<span style="color: #006699;">background</span>(0);
+&nbsp;&nbsp;
+&nbsp;&nbsp;<span style="color: #666666;">// Add velocity to the location.</span>
+&nbsp;&nbsp;location.<span style="color: #006699;">add</span>(velocity);
+&nbsp;&nbsp;<span style="color: #666666;">// Add gravity to velocity</span>
+&nbsp;&nbsp;velocity.<span style="color: #006699;">add</span>(gravity);
+&nbsp;&nbsp;
+&nbsp;&nbsp;<span style="color: #666666;">// Bounce off edges</span>
+&nbsp;&nbsp;<span style="color: #669900;">if</span> ((location.x &gt; <span style="color: #D94A7A;">width</span>) || (location.x &lt; 0)) {
+&nbsp;&nbsp;&nbsp;&nbsp;velocity.x&nbsp;=&nbsp;velocity.x&nbsp;*&nbsp;-1;
+&nbsp;&nbsp;}
+&nbsp;&nbsp;<span style="color: #669900;">if</span> (location.y &gt; <span style="color: #D94A7A;">height</span>) {
+&nbsp;&nbsp;&nbsp;&nbsp;<span style="color: #666666;">// We&apos;re reducing velocity ever so slightly </span>
+&nbsp;&nbsp;&nbsp;&nbsp;<span style="color: #666666;">// when it hits the bottom of the window</span>
+&nbsp;&nbsp;&nbsp;&nbsp;velocity.y&nbsp;=&nbsp;velocity.y&nbsp;*&nbsp;-0.95;&nbsp;
+&nbsp;&nbsp;&nbsp;&nbsp;location.y&nbsp;=&nbsp;<span style="color: #D94A7A;">height</span>;
+&nbsp;&nbsp;}
+
+&nbsp;&nbsp;<span style="color: #666666;">// Display circle at location vector</span>
+&nbsp;&nbsp;<span style="color: #006699;">stroke</span>(255);
+&nbsp;&nbsp;<span style="color: #006699;">strokeWeight</span>(2);
+&nbsp;&nbsp;<span style="color: #006699;">fill</span>(127);
+&nbsp;&nbsp;<span style="color: #006699;">ellipse</span>(location.x,location.y,48,48);
+}
+
+
+
+</pre></body></html>
